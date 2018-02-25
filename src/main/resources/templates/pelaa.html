@@ -1,0 +1,61 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Peli</title>
+        <meta charset="utf-8" />
+        <style>
+            body {
+                background-color: #caf7da;
+            }
+            input[type=text], select {
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 2px;
+                box-sizing: border-box;
+            }
+
+            input[type=submit] {
+                background-color: black;
+                color: white;
+                margin: 8px 0;
+                border: none;
+                border-radius: 2px;
+                cursor: pointer2
+            }
+
+            input[type=submit]:hover {
+                background-color: grey;
+            }
+
+            h1 {
+              color: black;
+              font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+            }
+
+            h3 {
+              font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+              color: black;
+            }
+
+            p {
+              font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+              color: black;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Peli</h1>
+  
+        <h2>Voittaja?</h2>
+        <ul>
+            <li th:each="pelaaja : ${pelaajat}">
+                <form method="post" action="/voitto">
+                    <input type="submit" name="pelaaja_id" th:value="${pelaaja.nimi}"/>
+                </form>
+            </li>
+        </ul>
+    </body>
+</html>

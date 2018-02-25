@@ -1,0 +1,81 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Peli</title>
+        <meta charset="UTF-8"/>
+        <style>
+            body {
+                background-color: #caf7da;
+            }
+            input[type=text], select {
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 2px;
+                box-sizing: border-box;
+            }
+
+            input[type=submit] {
+                background-color: black;
+                color: white;
+                margin: 8px 0;
+                border: none;
+                border-radius: 2px;
+                cursor: pointer2
+            }
+
+            input[type=submit]:hover {
+                background-color: grey;
+            }
+
+            h1 {
+              color: black;
+              font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+            }
+
+            h3 {
+              font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+              color: black;
+            }
+
+            p {
+              font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+              color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+        <a href="/index">Takaisin</a><br/>
+        <h1> Pelijono </h1>
+        <ul>
+            <li th:each="peli : ${pelit}">
+                <span th:text="${peli.nimi}">Task</span>
+                <ul>
+                    <li th:each="pelaaja : ${peli.pelaajat}">
+                    <span th:text="${pelaaja.nimi}">Task</span>
+                    </li>
+                </ul>
+                <form method="get" th:action="${'/pelaa/' + peli.id}">
+                    <input type="submit" value="Pelaa!" />
+                </form>
+            </li>
+        </ul>
+        </div>
+        
+        <div>
+        <h1>Lisää uusi peli</h1>
+        <form method="POST" action="/peli">
+            Pelaaja 1:<br/>
+            <input type="text" name="pelaaja1"/><br/>
+            Pelaaja 2:<br/>
+            <input type="text" name="pelaaja2"/><br/>
+            Pelaaja 3:<br/>
+            <input type="text" name="pelaaja3"/><br/>
+            Pelaaja 4:<br/>
+            <input type="text" name="pelaaja4"/><br/>
+            <input type="submit" value="Lisää peli jonoon!"/>
+        </form>
+        </div>
+    </body>
+</html>
